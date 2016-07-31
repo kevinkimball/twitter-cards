@@ -12,9 +12,13 @@ app.get('/', (req, res) => {
 app.get('/:url(*)', (req, res) => {
   const url = req.params.url;
 
-  x(url, 'title')((err, title) => {
-    let description,
-        image;
+  x(url, {
+    title: 'title',
+    text: ['p'],
+    image: 'img@src'
+  })((err, obj) => {
+    const { title, text, image } = obj,
+          description = text.join(' ').substring(0, 500);
 
     res.send(`
       <html>
@@ -26,7 +30,9 @@ app.get('/:url(*)', (req, res) => {
         </head>
         <body>
           <h1>${title}</h1>
+          <p>${description}</p>
           <a href='${url}'>${url}</a>
+          <img src=${image} />
         </body>
       </html>
     `);
@@ -34,5 +40,5 @@ app.get('/:url(*)', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`App rnning on port ${port}.`);
+  console.log(`App running on port ${port}.`);
 });
