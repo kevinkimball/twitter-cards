@@ -31,8 +31,8 @@ app.get('/:url(*)', (req, res) => {
         <body>
           <h1>${title}</h1>
           <p>${description}</p>
-          <a href='${url}'>${url}</a>
-          <img src=${image} />
+          <a href="${url}">${url}</a>
+          <img src="${image}" />
         </body>
       </html>
     `);
