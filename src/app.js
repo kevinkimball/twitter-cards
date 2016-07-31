@@ -2,6 +2,7 @@ import express from 'express';
 import Xray from 'x-ray';
 
 let app = express(),
+    port = process.env.PORT || 8081,
     x = Xray();
 
 app.get('/', (req, res) => {
@@ -32,4 +33,6 @@ app.get('/:url(*)', (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 8081)
+app.listen(port, () => {
+  console.log(`App rnning on port ${port}.`);
+});
