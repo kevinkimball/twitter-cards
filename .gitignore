@@ -1,1 +1,5 @@
+# npm debug file
 npm-debug.log
+
+# local versions of libs
+node_modules/*
