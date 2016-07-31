@@ -18,7 +18,7 @@ app.get('/:url(*)', (req, res) => {
     image: 'img@src'
   })((err, obj) => {
     const { title, text, image } = obj,
-          description = text.join(' ').substring(0, 500);
+          description = text.join(' ').substring(0, 300);
 
     res.send(`
       <html>
