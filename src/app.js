@@ -12,31 +12,30 @@ app.get('/', (req, res) => {
 app.get('/:url(*)', (req, res) => {
   const url = req.params.url;
 
-  x(url, {
-    title: 'title',
-    text: ['p'],
-    image: 'img@src'
-  })((err, obj) => {
-    const { title, text, image } = obj,
-          description = text.join(' ').substring(0, 300);
+  if (req.headers['user-agent'].indexOf('Twitterbot') > -1) {
+    // when twitter calls, show them the card
+    x(url, {
+      title: 'title',
+      text: ['p'],
+      image: 'img@src'
+    })((err, obj) => {
+      const { title, text, image } = obj,
+            description = text.join(' ').substring(0, 300);
 
-    res.send(`
-      <html>
-        <head>
-          <meta name="twitter:card" content="summary" />
-          <meta name="twitter:title" content="${title}" />
-          <meta name="twitter:description" content="${description}" />
-          <meta name="twitter:image" content="${image}" />
-        </head>
-        <body>
-          <h1>${title}</h1>
-          <p>${description}</p>
-          <a href="${url}">${url}</a>
-          <img src="${image}" />
-        </body>
-      </html>
-    `);
-  });
+      res.send(`
+        <html>
+          <head>
+            <meta name="twitter:card" content="summary" />
+            <meta name="twitter:title" content="${title}" />
+            <meta name="twitter:description" content="${description}" />
+            <meta name="twitter:image" content="${image}" />
+          </head>
+        </html>
+      `);
+    });
+  } else {
+    res.redirect(url);
+  }
 });
 
 app.listen(port, () => {
