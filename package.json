@@ -1,7 +1,7 @@
 {
-  "name": "link-shortener",
+  "name": "twitter-cards",
   "version": "1.0.0",
-  "description": "link shortener that adds twitter cards",
+  "description": "adds twitter cards to links",
   "main": "lib/app.js",
   "scripts": {
     "build": "babel --presets es2015 src -d lib",
@@ -10,14 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/kevinkimball/link-shortener.git"
+    "url": "https://github.com/kevinkimball/twitter-cards.git"
   },
   "author": "Kevin Kimball",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kevinkimball/link-shortener/issues"
-  },
-  "homepage": "https://github.com/kevinkimball/link-shortener",
+  "homepage": "https://github.com/kevinkimball/twitter-cards",
   "dependencies": {
     "express": "^4.14.0",
     "x-ray": "^2.3.0"
